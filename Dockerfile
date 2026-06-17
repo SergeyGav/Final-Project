@@ -1,10 +1,9 @@
-FROM python:3.11-slim
+FROM python:3.12-slim
 
-# Set the working directory in the container
 WORKDIR /app
 
-# Copy the current directory contents into the container
-COPY . .
+COPY app.py .
 
-# Run the Python script
+RUN pip install flask
+
 CMD ["python", "app.py"]
