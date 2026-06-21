@@ -3,11 +3,10 @@ pipeline {
 
     environment {
         IMAGE_NAME = "sergeygav/hello-world"
+        TRIVY_CACHE_DIR = '/tmp/trivy-cache'
     }
 
     stages {
-
-        
 
         stage('Build Application') {
             steps {
@@ -24,6 +23,19 @@ pipeline {
         stage('Tag Image') {
             steps {
                 sh "docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:${BUILD_NUMBER}"
+            }
+        }
+
+        stage('Trivy Scan') {
+            steps {
+                sh """
+                    trivy image \
+                        --severity CRITICAL \
+                        --exit-code 1 \
+                        --cache-dir ${TRIVY_CACHE_DIR} \
+                        --format table \
+                        ${IMAGE_NAME}:${BUILD_NUMBER}
+                """
             }
         }
 
