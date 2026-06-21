@@ -7,12 +7,7 @@ pipeline {
 
     stages {
 
-        stage('Clone Repo') {
-            steps {
-                git branch: 'main',
-                    url: 'https://github.com/SergeyGav/Final-Project.git'
-            }
-        }
+        
 
         stage('Build Application') {
             steps {
