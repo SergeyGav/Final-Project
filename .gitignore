@@ -2,3 +2,5 @@
 __pycache__/
 *.pyc
 .env
+kubeconfig-flat.yaml
+End of DevOps Course Projects.pdf
