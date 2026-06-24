@@ -1,0 +1,19 @@
+replicaCount: 3
+
+image:
+  repository: sergeygav/hello-world
+  tag: latest
+
+service:
+  type: NodePort
+  port: 5000
+  targetPort: 5000
+  nodePort: 30003
+
+resources:
+  requests:
+    cpu: "200m"
+    memory: "128Mi"
+  limits:
+    cpu: "500m"
+    memory: "256Mi"
